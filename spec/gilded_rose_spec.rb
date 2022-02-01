@@ -1,0 +1,1 @@
+require 'gilded_rose'
