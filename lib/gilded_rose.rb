@@ -2,6 +2,8 @@ require 'item'
 
 class GildedRose
 
+  FLOOR_QUALITY = 0
+
   def initialize(items)
     @items = items
     @aged_items = ['Aged Brie']
@@ -68,7 +70,7 @@ class GildedRose
   def reduce_item_quality(item)
       if @aged_items.include? item.name
         raise "This item gets better with age. Quality not reduced."
-      elsif item.quality == 0
+      elsif item.quality == FLOOR_QUALITY
         item.quality -= 0
       elsif item.sell_in < 0
         item.quality -= 2
