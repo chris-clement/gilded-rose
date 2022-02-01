@@ -34,6 +34,11 @@ describe GildedRose do
       end
       expect{ gilded_rose.reduce_items_quality }.to change { @soup.quality }.by 0
     end
+    it 'Aged Brie actually increases in quality by 1 as time passes' do
+      brie = Item.new('Aged Brie', 10, 20)
+      gilded_rose = GildedRose.new([brie])
+      expect{ gilded_rose.reduce_items_quality }.to change { brie.quality }.by 1
+    end
   end
   describe '#reduce_items_sell_in' do
     it 'reduces the sell_in of a single item by 1' do
