@@ -53,6 +53,10 @@ class GildedRose
       end
     end
   end
+
+  def reduce_items_quality
+    @items.quality -= 1
+  end
 end
 
 
