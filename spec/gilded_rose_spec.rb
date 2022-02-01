@@ -20,6 +20,13 @@ describe GildedRose do
       expect{ gilded_rose.reduce_items_quality }.to change { @soup.quality }.by -1
       expect{ gilded_rose.reduce_items_quality }.to change { @bread.quality }.by -1
     end
+    it 'once sell by date has passed, quality degrades twice as fast' do
+      gilded_rose = GildedRose.new([@soup])
+      (@soup.sell_in + 1).times do 
+        gilded_rose.reduce_items_sell_in
+      end
+      expect{ gilded_rose.reduce_items_quality }.to change { @soup.quality }.by -2
+    end
   end
   describe '#reduce_items_sell_in' do
     it 'reduces the sell_in of a single item by 1' do
