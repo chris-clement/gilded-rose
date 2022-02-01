@@ -53,4 +53,12 @@ describe GildedRose do
       expect{ gilded_rose.reduce_items_sell_in }.to change { @bread.sell_in }.by -1
     end
   end
+  describe '#change_items_quality' do
+    it "calls the increase_items_quality method if the item is Aged brie" do
+      brie = Item.new('Aged Brie', 10, 20)
+      gilded_rose = GildedRose.new([brie])
+      expect(gilded_rose).to receive :increase_item_quality
+      gilded_rose.change_items_quality
+    end
+  end
 end
