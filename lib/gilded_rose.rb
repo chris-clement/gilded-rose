@@ -3,6 +3,7 @@ require 'item'
 class GildedRose
 
   FLOOR_QUALITY = 0
+  FLOOR_SELL_IN = 0
 
   def initialize(items)
     @items = items
@@ -72,7 +73,7 @@ class GildedRose
         raise "This item gets better with age. Quality not reduced."
       elsif item.quality == FLOOR_QUALITY
         item.quality -= 0
-      elsif item.sell_in < 0
+      elsif item.sell_in < FLOOR_SELL_IN
         item.quality -= 2
       else
         item.quality -= 1
