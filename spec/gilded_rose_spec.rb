@@ -10,6 +10,7 @@ describe GildedRose do
     @lowest_quality = GildedRose::FLOOR_QUALITY
     @lowest_sell_in = GildedRose::FLOOR_SELL_IN
     @quality_std_reduction = GildedRose::QUALITY_STD_REDUCTION
+    @quality_higher_reduction = GildedRose::QUALITY_HIGHER_REDUCTION
   end
 
   describe '#reduce_items_sell_in' do
@@ -42,7 +43,7 @@ describe GildedRose do
       (@soup.sell_in - @lowest_sell_in + 1).times do 
         gilded_rose.reduce_items_sell_in
       end
-      expect{ gilded_rose.change_items_quality }.to change { @soup.quality }.by -2
+      expect{ gilded_rose.change_items_quality }.to change { @soup.quality }.by -@quality_higher_reduction
     end
     it 'stops reducing when quality is at the lowest quality allowed' do
       gilded_rose = GildedRose.new([@soup])

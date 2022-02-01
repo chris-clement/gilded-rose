@@ -5,6 +5,7 @@ class GildedRose
   FLOOR_QUALITY = 0
   FLOOR_SELL_IN = 0
   QUALITY_STD_REDUCTION = 1
+  QUALITY_HIGHER_REDUCTION = 2
 
   def initialize(items)
     @items = items
@@ -75,7 +76,7 @@ class GildedRose
       elsif item.quality == FLOOR_QUALITY
         item.quality -= 0
       elsif item.sell_in < FLOOR_SELL_IN
-        item.quality -= 2
+        item.quality -= QUALITY_HIGHER_REDUCTION
       else
         item.quality -= QUALITY_STD_REDUCTION
       end
