@@ -13,6 +13,7 @@ describe GildedRose do
     @quality_higher_reduction = GildedRose::QUALITY_HIGHER_REDUCTION
     @quality_std_increase = GildedRose::QUALITY_STD_INCREASE
     @sell_in_std_reduction = GildedRose::SELL_IN_STD_REDUCTION
+    @highest_quality = GildedRose::CEILING_QUALITY
   end
 
   describe '#reduce_items_sell_in' do
@@ -67,6 +68,13 @@ describe GildedRose do
       gilded_rose = GildedRose.new([@soup])
       expect(gilded_rose).to receive :reduce_item_quality
       gilded_rose.change_items_quality
+    end
+    it "has a ceiling quality value" do
+      gilded_rose = GildedRose.new([@better_with_age_item])
+      (@highest_quality - @better_with_age_item.quality).times do 
+        gilded_rose.change_items_quality
+      end
+      expect{ gilded_rose.change_items_quality }.to change { @better_with_age_item.quality }.by 0
     end
   end
   describe '#reduce_item_quality' do

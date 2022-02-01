@@ -4,6 +4,7 @@ class GildedRose
 
   FLOOR_QUALITY = 0
   FLOOR_SELL_IN = 0
+  CEILING_QUALITY = 50
   
   SELL_IN_STD_REDUCTION = 1
   
@@ -88,7 +89,9 @@ class GildedRose
   end
 
   def increase_item_quality(item)
-    item.quality += QUALITY_STD_INCREASE
+    if item.quality < CEILING_QUALITY
+      item.quality += QUALITY_STD_INCREASE
+    end
   end
 
   def reduce_items_sell_in
