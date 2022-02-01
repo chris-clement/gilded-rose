@@ -6,6 +6,7 @@ describe GildedRose do
   before(:each) do
     @soup = Item.new('soup', 3, 10)
     @bread = Item.new('bread', 5, 5)
+    @better_with_age_item = Item.new('Aged Brie', 10, 20)
   end
 
   describe '#reduce_items_sell_in' do
@@ -48,15 +49,15 @@ describe GildedRose do
       expect{ gilded_rose.change_items_quality }.to change { @soup.quality }.by 0
     end
     it "calls the increase_items_quality method if the item is Aged brie" do
-      brie = Item.new('Aged Brie', 10, 20)
-      gilded_rose = GildedRose.new([brie])
+      # brie = Item.new('Aged Brie', 10, 20)
+      gilded_rose = GildedRose.new([@better_with_age_item])
       expect(gilded_rose).to receive :increase_item_quality
       gilded_rose.change_items_quality
     end
     it 'Aged Brie actually increases in quality by 1 as time passes' do
-      brie = Item.new('Aged Brie', 10, 20)
-      gilded_rose = GildedRose.new([brie])
-      expect{ gilded_rose.change_items_quality }.to change { brie.quality }.by 1
+      # brie = Item.new('Aged Brie', 10, 20)
+      gilded_rose = GildedRose.new([@better_with_age_item])
+      expect{ gilded_rose.change_items_quality }.to change { @better_with_age_item.quality }.by 1
     end
     it "calls the decrease_items_quality method if the item is not Aged brie" do
       gilded_rose = GildedRose.new([@soup])
@@ -66,9 +67,9 @@ describe GildedRose do
   end
   describe '#reduce_item_quality' do
     it "raises an error when trying to reduce quality of an aged_item" do
-      brie = Item.new('Aged Brie', 10, 20)
-      gilded_rose = GildedRose.new([brie])
-      expect { gilded_rose.reduce_item_quality(brie) }.to raise_error 'This item gets better with age. Quality not reduced.'
+      # brie = Item.new('Aged Brie', 10, 20)
+      gilded_rose = GildedRose.new([@better_with_age_item])
+      expect { gilded_rose.reduce_item_quality(@better_with_age_item) }.to raise_error 'This item gets better with age. Quality not reduced.'
     end
   end
 end
