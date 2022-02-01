@@ -58,12 +58,13 @@ class GildedRose
     @items.each do |item|
       if item.name == "Aged Brie"
         increase_item_quality(item)
+      else
+        reduce_item_quality(item)
       end
     end
   end
 
-  def reduce_items_quality
-    @items.each do |item|
+  def reduce_item_quality(item)
       if item.name == "Aged Brie"
         item.quality += 1
       elsif item.quality == 0
@@ -73,7 +74,6 @@ class GildedRose
       else
         item.quality -= 1
       end
-    end
   end
 
   def increase_item_quality(item)
