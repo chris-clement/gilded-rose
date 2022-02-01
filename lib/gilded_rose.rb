@@ -56,7 +56,9 @@ class GildedRose
 
   def reduce_items_quality
     @items.each do |item|
-      if item.sell_in < 0
+      if item.quality == 0
+        item.quality -= 0
+      elsif item.sell_in < 0
         item.quality -= 2
       else
         item.quality -= 1
