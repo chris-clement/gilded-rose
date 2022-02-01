@@ -4,8 +4,12 @@ class GildedRose
 
   FLOOR_QUALITY = 0
   FLOOR_SELL_IN = 0
+  
+  SELL_IN_STD_REDUCTION = 1
+  
   QUALITY_STD_REDUCTION = 1
   QUALITY_HIGHER_REDUCTION = 2
+  
   QUALITY_STD_INCREASE = 1
 
   def initialize(items)
@@ -89,7 +93,7 @@ class GildedRose
 
   def reduce_items_sell_in
     @items.each do |item|
-      item.sell_in -= 1
+      item.sell_in -= SELL_IN_STD_REDUCTION
     end
   end
 end

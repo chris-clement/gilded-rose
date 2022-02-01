@@ -12,19 +12,20 @@ describe GildedRose do
     @quality_std_reduction = GildedRose::QUALITY_STD_REDUCTION
     @quality_higher_reduction = GildedRose::QUALITY_HIGHER_REDUCTION
     @quality_std_increase = GildedRose::QUALITY_STD_INCREASE
+    @sell_in_std_reduction = GildedRose::SELL_IN_STD_REDUCTION
   end
 
   describe '#reduce_items_sell_in' do
     it 'reduces the sell_in of a single item by standard amount' do
       gilded_rose = GildedRose.new([@soup])
       
-      expect{ gilded_rose.reduce_items_sell_in }.to change { @soup.sell_in }.by -1
+      expect{ gilded_rose.reduce_items_sell_in }.to change { @soup.sell_in }.by -@sell_in_std_reduction 
     end
     it 'reduces the sell_in of two items by standard amount' do
       gilded_rose = GildedRose.new([@soup, @bread])
       
-      expect{ gilded_rose.reduce_items_sell_in}.to change { @soup.sell_in }.by -1
-      expect{ gilded_rose.reduce_items_sell_in }.to change { @bread.sell_in }.by -1
+      expect{ gilded_rose.reduce_items_sell_in}.to change { @soup.sell_in }.by -@sell_in_std_reduction 
+      expect{ gilded_rose.reduce_items_sell_in }.to change { @bread.sell_in }.by -@sell_in_std_reduction 
     end
   end
   describe '#change_items_quality' do
