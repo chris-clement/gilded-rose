@@ -59,6 +59,12 @@ class GildedRose
       item.quality -= 1
     end
   end
+
+  def reduce_items_sell_in
+    @items.each do |item|
+      item.sell_in -= 1
+    end
+  end
 end
 
 
