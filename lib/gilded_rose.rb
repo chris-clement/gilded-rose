@@ -6,6 +6,7 @@ class GildedRose
   FLOOR_SELL_IN = 0
   QUALITY_STD_REDUCTION = 1
   QUALITY_HIGHER_REDUCTION = 2
+  QUALITY_STD_INCREASE = 1
 
   def initialize(items)
     @items = items
@@ -83,7 +84,7 @@ class GildedRose
   end
 
   def increase_item_quality(item)
-    item.quality += 1
+    item.quality += QUALITY_STD_INCREASE
   end
 
   def reduce_items_sell_in

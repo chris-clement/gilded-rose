@@ -11,6 +11,7 @@ describe GildedRose do
     @lowest_sell_in = GildedRose::FLOOR_SELL_IN
     @quality_std_reduction = GildedRose::QUALITY_STD_REDUCTION
     @quality_higher_reduction = GildedRose::QUALITY_HIGHER_REDUCTION
+    @quality_std_increase = GildedRose::QUALITY_STD_INCREASE
   end
 
   describe '#reduce_items_sell_in' do
@@ -57,9 +58,9 @@ describe GildedRose do
       expect(gilded_rose).to receive :increase_item_quality
       gilded_rose.change_items_quality
     end
-    it 'aged_item actually increases in quality by 1 as time passes' do
+    it 'aged_item actually increases in quality by standard incrase amount as time passes' do
       gilded_rose = GildedRose.new([@better_with_age_item])
-      expect{ gilded_rose.change_items_quality }.to change { @better_with_age_item.quality }.by 1
+      expect{ gilded_rose.change_items_quality }.to change { @better_with_age_item.quality }.by  @quality_std_increase
     end
     it "calls the decrease_items_quality method if the item is not an aged_item" do
       gilded_rose = GildedRose.new([@soup])
