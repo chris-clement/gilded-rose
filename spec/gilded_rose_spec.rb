@@ -7,6 +7,7 @@ describe GildedRose do
     @soup = Item.new('soup', 3, 10)
     @bread = Item.new('bread', 5, 5)
     @better_with_age_item = Item.new('Aged Brie', 10, 20)
+    @legendary_item = Item.new('Sulfuras', 30, 40)
     @lowest_quality = GildedRose::FLOOR_QUALITY
     @lowest_sell_in = GildedRose::FLOOR_SELL_IN
     @quality_std_reduction = GildedRose::QUALITY_STD_REDUCTION
@@ -14,6 +15,7 @@ describe GildedRose do
     @quality_std_increase = GildedRose::QUALITY_STD_INCREASE
     @sell_in_std_reduction = GildedRose::SELL_IN_STD_REDUCTION
     @highest_quality = GildedRose::CEILING_QUALITY
+
   end
 
   describe '#reduce_items_sell_in' do
@@ -75,6 +77,10 @@ describe GildedRose do
         gilded_rose.change_items_quality
       end
       expect{ gilded_rose.change_items_quality }.to change { @better_with_age_item.quality }.by 0
+    end
+    it "Legendary items never decrease in Quality" do
+      gilded_rose = GildedRose.new([@legendary_item])
+      expect{ gilded_rose.change_items_quality }.to change { @legendary_item.quality }.by 0
     end
   end
   describe '#reduce_item_quality' do
