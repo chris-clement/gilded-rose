@@ -4,6 +4,7 @@ class GildedRose
 
   def initialize(items)
     @items = items
+    @aged_items = ['Aged Brie']
   end
 
   def update_quality()
@@ -56,7 +57,7 @@ class GildedRose
 
   def change_items_quality
     @items.each do |item|
-      if item.name == "Aged Brie"
+      if @aged_items.include? item.name
         increase_item_quality(item)
       else
         reduce_item_quality(item)
@@ -65,8 +66,8 @@ class GildedRose
   end
 
   def reduce_item_quality(item)
-      if item.name == "Aged Brie"
-        item.quality += 1
+      if @aged_items.include? item.name
+        raise "This item gets better with age. Quality not reduced."
       elsif item.quality == 0
         item.quality -= 0
       elsif item.sell_in < 0

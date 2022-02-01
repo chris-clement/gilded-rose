@@ -64,4 +64,11 @@ describe GildedRose do
       gilded_rose.change_items_quality
     end
   end
+  describe '#reduce_item_quality' do
+    it "raises an error when trying to reduce quality of an aged_item" do
+      brie = Item.new('Aged Brie', 10, 20)
+      gilded_rose = GildedRose.new([brie])
+      expect { gilded_rose.reduce_item_quality(brie) }.to raise_error 'This item gets better with age. Quality not reduced.'
+    end
+  end
 end
